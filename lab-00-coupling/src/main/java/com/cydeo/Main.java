@@ -11,7 +11,7 @@ public class Main {
         CustomerBalance customerBalance = new CustomerBalance(user, BigDecimal.ZERO);
         GiftCardBalance giftCardBalance = new GiftCardBalance(user, BigDecimal.ZERO);
 
-        customerBalance.addBalance(new BigDecimal(150));
+        customerBalance.addBalance(new BigDecimal(50));
         giftCardBalance.addBalance(new BigDecimal(120));
 
         BalanceService balanceService =
