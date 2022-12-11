@@ -9,6 +9,7 @@ import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 import static com.cydeo.lab04springmvc.service.impl.ProductServiceImpl.PRODUCT_LIST;
 
@@ -21,8 +22,11 @@ public class CartServiceImpl implements CartService {
     }
     @Override
     public List<CartItem> retrieveCartDetail(UUID cartId) {
-        // todo implement method using stream
-        return new ArrayList<>();
+
+
+        return CART_LIST.stream().filter(p->p.getId().equals(cartId))
+                .map(p->p.getCartItemList())
+                .findFirst().orElseThrow();
     }
 
     @Override
@@ -59,10 +63,16 @@ public class CartServiceImpl implements CartService {
         BigDecimal cart1TotalAmount = BigDecimal.ZERO;
         BigDecimal cart2TotalAmount = BigDecimal.ZERO;
 
-        // todo change to stream
+
         for (CartItem cartItem : cartItemList){
             cart1TotalAmount = cart1TotalAmount.add(cartItem.getProduct().getPrice().multiply(BigDecimal.valueOf(cartItem.getQuantity())));
-        }
+       }
+
+
+
+
+
+
 
         CART_LIST.add(cart1);
         cart1.setCartTotalAmount(cart1TotalAmount);
